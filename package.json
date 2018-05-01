@@ -1,0 +1,16 @@
+{
+  "name": "apitestingmochachai",
+  "version": "1.0.0",
+  "description": "API Testing with Mocha,Chai,Chaihttp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kaushik.mahata",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.3.0"
+  }
+}
