@@ -25,9 +25,12 @@ describe('auth token API', function() {
             .get('/api/users?page=2')
             .end(function(err, res){
                 res.should.have.status(200);
-                console.log("token : "+ JSON.stringify(res.body));
-                /*res.body.should.have.property('result').be.eql(true);
-                res.body.should.have.property('token');*/
+                console.log("body : "+ JSON.stringify(res.body));
+                res.body.should.have.property('page').be.eql(2);
+                res.body.should.have.property('total_pages').be.eql(4);
+                res.body.data[0].should.have.property('first_name').be.eql('Eve');
+                res.body.data[1].should.have.property('first_name').be.eql('Charles');
+                res.body.data[2].should.have.property('first_name').be.eql('Tracey');
                 done();
             });
     });
