@@ -1,0 +1,54 @@
+
+/**
+ * Created by kaushik.mahata 04/25/2018.
+ */
+var chai = require('chai');
+var server;
+var config = require('./../config/config.json');
+var chaiHttp = require('chai-http');
+chai.use(chaiHttp);
+var should = chai.should();
+
+var postBody = require('./../data/body.json');
+
+
+describe('Enrollment API Checks - ', function () {
+    this.timeout(400000);
+
+    before(function (done) {
+        server = config.baseURI ;
+        done();
+
+    });
+
+    it('Adult member with Advantage Plan and annual billing', function (done) {
+
+
+        console.log(postBody);
+        chai.request(server)
+            .post('/api/register')
+            .set('Content-Type', 'application/json')
+            .set('cache-control', 'no-cache')
+            .send(postBody)
+            .end(function (err, res) {
+                if (err) {
+
+                    console.log(err);
+                    res.should.have.status(201);
+                    done();
+                }
+                else {
+                    console.log(": " + JSON.stringify(res.body));
+                    res.should.have.status(201);
+                    res.body.should.have.property('token');
+
+
+                    done();
+                }
+
+            });
+    });
+
+
+
+});
